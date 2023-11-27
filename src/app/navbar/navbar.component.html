@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Add your custom styles here */
+
+    /* Optional: Adjust navbar color and other styles */
+    .navbar {
+      background-color: #000000;
+      height: 100px;
+    }
+
+    .navbar-brand {
+      color: #fff; /* Company name color */
+      font-weight: bold; /* Make the text bold */
+      font-size: 26px;
+    }
+
+    .navbar-brand:hover {
+      color: #fff; /* Company name color on hover */
+    }
+
+    /* Align the company name to the left and icons to the right */
+    .navbar-nav.ml-auto {
+      margin-right: 15px;
+    }
+
+    /* Optional: Adjust icon colors and styles */
+    .navbar-nav.ml-auto i {
+      color: #fff; /* Icon color */
+      font-size: 1.2em; /* Icon size */
+      margin: 0 10px; /* Adjust icon spacing */
+    }
+
+    /* Optional: Adjust icon colors on hover */
+    .navbar-nav.ml-auto i:hover {
+      color: #f39c12; /* Icon color on hover */
+    }
+    .search-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      padding: 8px;
+      border: none;
+      border-radius: 15px;
+      margin-right: 10px;
+      width: 400px;
+    }
+    .search-input-container {
+      position: relative;
+    }
+
+    .search-input-container i {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #000; /* Black icon color */
+    }
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#">The Can-Do</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <div class="search-container">
+            <div class="search-input-container">
+              <!-- <i class="fas fa-search"></i> -->
+              <input type="text" class="search-input" placeholder="Search...">
+            </div>
+          </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-user-circle"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Optional: Add your content here -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
