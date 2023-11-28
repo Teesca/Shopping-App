@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+  
+  .oval-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+   
+  }
+  
+  .nav-item {
+    position: relative;
+    padding: 10px;
+    margin-right: 5px; /* Adjusted margin to 5px */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: rgb(126, 120, 120);
+
+  }
+  
+  .nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    z-index: -1;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-item:hover::before,
+  .nav-item[data-category="all"]::before {
+    background-color: #ddd;
+  }
+  
+  .nav-item:hover {
+    background-color: #070606;
+    border-radius: 20px;
+  
+  }
+  
