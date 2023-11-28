@@ -7,7 +7,7 @@ import { ApiService } from '../api.service';
   styleUrls: ['./subnav.component.css']
 })
 export class SubnavComponent {
-  allBackgroundColor: string = '';
+  allBackgroundColor: string = 'black';
   menBackgroundColor: string = '';
   womenBackgroundColor: string = '';
   electronicsBackgroundColor: string = '';
