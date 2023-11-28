@@ -1,0 +1,21 @@
+.main {
+    height: 100vh;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+}
+.topc{
+    background-color: cadetblue;
+}
+.direction{
+    background-color: orange;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+}
+.left {
+    background-color: aquamarine;
+}
+.right {
+    background-color: purple;
+}
