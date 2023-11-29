@@ -1,0 +1,25 @@
+/* footer.component.css */
+.footer {
+    background-color: #000000;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  h4 {
+    color: #fff;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+ }
+  
