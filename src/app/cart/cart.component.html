@@ -1,7 +1,7 @@
  <!-- <ng-container>
 
- </ng-container>
- 
+ </ng-container> -->
+<!--  
  <div class="main-container">
     <div class="items-container" id="item-heading">
     <div class="cart-heading"><p style="font-weight: 400; font-size: large;">Cart</p></div>
@@ -10,134 +10,45 @@
   
 
     </div><br>
-    <div class="items-container">
 
-        <div class="img-container">
-            <img src="{{item.image}}">
-        </div>
-        <div class="item-description">
-
-            <div class="item-description-top">
-                <p style="font-weight: bold;">{{item.description}}</p>
-                <b id="price">{{item.price}}</b>
-            </div>
-            <div class="item-description-bottom">
-                <div class="qty-buttons">
-                    <button class="btn-add" >+</button>
-                    <label class="qty" id="quantity">{{item.quantity}}</label>
-                    <button class="btn-add">-</button>
-                    <label class="qty" id="total">{{item.total}}</label>
+    <div *ngFor="let item of allproductsFromCart; let i = index" >
+        <div>
+            <div class="items-container">
+                <div class="img-container">
+                    <img [src]="allproductsFromCart[i].image">
                 </div>
-                <div class="delete-button">
-                   
-                    <button id="delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        class="bi bi-trash" viewBox="0 0 16 16">
-                        <path
-                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                        <path
-                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                    </svg></button>
+                <div class="item-description">
+        
+                    <div class="item-description-top">
+                        <p style="font-weight: bold;">{{allproductsFromCart[i].description}}</p>
+                        <b id="price">R {{allproductsFromCart[i].price}}</b>
+                    </div>
+                    <div class="item-description-bottom">
+                        <div class="qty-buttons">
+                            <button class="btn-add">+</button>
+                            <label class="qty" id="quantity">1</label>
+                            <button class="btn-add">-</button>
+                        </div>
+                        <div class="delete-button">
+                           
+                            <button id="delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-trash" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                <path
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                            </svg></button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-    </div><br>
-
-
-
-
-    <div class="items-container">
-        <div class="img-container">
-            <img src="https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg">
-        </div>
-        <div class="item-description">
-
-            <div class="item-description-top">
-                <p style="font-weight: bold;">SAMSUNG 24" LF24T350F Full HD 75Hz IPS Monitor</p>
-                <b id="price">R3,999.99</b>
-            </div>
-            <div class="item-description-bottom">
-                <div class="qty-buttons">
-                    <button class="btn-add">+</button>
-                    <label class="qty" id="quantity">1</label>
-                    <button class="btn-add">-</button>
-                </div>
-                <div class="delete-button">
-                    <button id="delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        class="bi bi-trash" viewBox="0 0 16 16">
-                        <path
-                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                        <path
-                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                    </svg></button>
-                    
-                </div>
+        
             </div>
         </div>
 
-
-    </div><br>
-    <div class="items-container">
-        <div class="img-container">
-            <img src="https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg">
-        </div>
-        <div class="item-description">
-
-            <div class="item-description-top">
-                <p style="font-weight: bold; "id="item-decription">SAMSUNG 24" LF24T350F Full HD 75Hz IPS Monitor</p>
-                <b id="price">R3,999.99</b>
-            </div>
-            <div class="item-description-bottom">
-                <div class="qty-buttons">
-                    <button class="btn-add">+</button>
-                    <label class="qty" id="quantity">1</label>
-                    <button class="btn-add">-</button>
-                </div>
-                <div class="delete-button">
-                    <button id="delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        class="bi bi-trash" viewBox="0 0 16 16">
-                        <path
-                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                        <path
-                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                    </svg></button>
-                </div>
-            </div>
-        </div>
+    </div>
 
 
-    </div><br>
-    <div class="items-container">
-        <div class="img-container">
-            <img src="https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg">
-        </div>
-        <div class="item-description">
-
-            <div class="item-description-top">
-                <p style="font-weight: bold;" id="item-decription">SAMSUNG 24" LF24T350F Full HD 75Hz IPS Monitor</p>
-                <b id="price">R3,999.99</b>
-            </div>
-            <div class="item-description-bottom">
-                <div class="qty-buttons">
-                    <button class="btn-add">+</button>
-                    <label class="qty" id="quantity">1</label>
-                    <button class="btn-add">-</button>
-                </div>
-                <div class="delete-button">
-                    <button id="delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                        class="bi bi-trash" viewBox="0 0 16 16">
-                        <path
-                            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                        <path
-                            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                    </svg></button>
-                </div>
-            </div>
-        </div>
-
-
-    </div><br>
-
+    
     <div class="items-container-checkout">
         <div class="item-summary">
             <b>Order Summary:</b>
@@ -210,7 +121,58 @@
     </div>
 </ng-container>  -->
 
- <!-- <ng-container *ngIf="item-details.length ==0">  -->
+
+
+
+
+
+
+
+
+
+<ng-container *ngIf="allproductsFromCart.length !=0">
+    <div class="container">
+        <div class="card-table">
+            <div class="cart-product">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Product Name</th>
+                            <th>Product Image</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of allproductsFromCart; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.title}}</td>
+                            <td><img style="width: 120px;" src="{{item.image}}" alt=""></td>
+                            <td style="width: 25%;">{{item.description}}</td>
+                            <th style="width: 12%;">{{item.price}}</th>
+                            <td style="width: 12%;">{{item.quantity}}</td>
+                            <td style="width: 12%;">{{item.total}}</td>
+                            <td>
+                                <button (click)="removeItem(item)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
+                            <td><button routerLink="/products" class="btn btn-primary">Shop More</button></td>
+                            <td><button class="btn btn-success">Checkout</button></td>
+                            <td><strong>Grand Total : ${{grandTotal}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<!-- <ng-container *ngIf="allproductsFromCart.length ==0"> 
     <div class="container">
         <div class="card">
             <h5 class="card-title">My Cart</h5>
@@ -222,4 +184,4 @@
             <button routerLink="/item-details" class="btn btn-primary">Shop Now</button>
         </div>
     </div>
- <!-- </ng-container>   -->
+ </ng-container>   -->

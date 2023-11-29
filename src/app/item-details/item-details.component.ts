@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-item-details',
@@ -13,6 +14,7 @@ export class ItemDetailsComponent {
 
   
   constructor(private apiService: ApiService,private route: ActivatedRoute){}
+
 
   ngOnInit() {
     // Get the itemId from the route parameters
@@ -30,8 +32,17 @@ export class ItemDetailsComponent {
             }
           );
         });
-      }
+    }
 
-  
+    addToCart() {
+      this.apiService.addToCart(this.productDeatail).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.error('Failed to add item to cart.', error);
+        }
+      );
+    }
 
 }

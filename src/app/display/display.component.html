@@ -6,9 +6,9 @@
   <div class="listing">
     <div *ngFor="let item of allProductsData; let i = index" class="item-container" >
       <div class="item" >
-        <div class="holder">
+        <div class="holder" [routerLink]="['/products', allProductsData[i].id]">
           <img class="listing-photo" [src]="allProductsData[i].image" alt="">
-          <h6 class="listing-heading" [routerLink]="['/products', allProductsData[i].id]">{{ allProductsData[i].title }}</h6>
+          <h6 class="listing-heading" >{{ allProductsData[i].title }}</h6>
           <p class="listing-price">R {{allProductsData[i].price}}</p>
           <div class="rating">
             <div style="height: 1.5em; width: 1.5em;">
