@@ -1,11 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../cart.service';
 
 @Component({
-  standalone: true,
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent {
+export class CartComponent implements OnInit {
+
+  public products : any = [];
+  item: any
+  public grandTotal !: number;
+  constructor(private cartService : CartService) { }
+
+  ngOnInit(): void {
+    this.cartService.getProducts()
+    .subscribe(res=>{
+      this.products = res;
+      this.grandTotal = this.cartService.getTotalPrice();
+    })
+  }
+  removeItem(item: any){
+    this.cartService.removeCartItem(item);
+  }
+  emptycart(){
+    this.cartService.removeAllCart();
+  }
 
 }
