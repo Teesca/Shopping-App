@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { SubnavComponent } from '../subnav/subnav.component';
 
 @Component({
+  standalone: true,
   selector: 'app-display',
   templateUrl: './display.component.html',
   styleUrls: ['./display.component.css'],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SubnavComponent
+  ],
 })
 export class DisplayComponent {
 
