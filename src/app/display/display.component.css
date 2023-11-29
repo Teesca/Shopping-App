@@ -22,7 +22,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
-    cursor: pointer;
   }
 
 .listing-photo {
@@ -49,6 +48,7 @@
   .holder{
     padding: 2px;
     border: 1px solid grey;
+    cursor: pointer;
   }
   .holder:hover{
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
