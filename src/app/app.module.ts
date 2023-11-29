@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SubnavComponent } from './subnav/subnav.component';
 import { DisplayComponent } from './display/display.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { DisplayComponent } from './display/display.component';
     NavbarComponent,
     SubnavComponent,
     DisplayComponent,
+    FooterComponent,
     
   ],
   imports: [

@@ -14,6 +14,7 @@ export class DisplayComponent {
   womenClothingData: any[] = [];
   jeweleryData: any[] = [];
   electronicsData: any[] = [];
+  listToDisplay: string = 'all';
   constructor( private apiService: ApiService){}
 
   ngOnInit() {
@@ -25,18 +26,23 @@ export class DisplayComponent {
   universalDisplay(data: any){
     switch(data){
       case 'all': 
+        this.listToDisplay = data;
         this.diplayAllProducts();
         break;
       case 'men':
+        this.listToDisplay = data;
         this.diplayMenClothing();
         break;
       case 'women':
+        this.listToDisplay = data;
         this.displayWomenClothing();
         break;
       case 'electronics':
+        this.listToDisplay = data;
         this.displayElectronics();
         break;
       case 'jewelery':
+        this.listToDisplay = data;
         this.displayJewelery();
         break;
       default:
