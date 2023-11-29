@@ -81,6 +81,14 @@ export class ApiService {
     return this.http.post<any>(`${this.apiUrllocal}`, product, this.httpOptions)
   }
 
+  // Moloro
+  getCart(): Observable<any> {
+    const url = `${this.apiUrllocal}`;
+    return this.http.get(url);
+  }
+
+
+
 
   // // Observable to subscribe to user added events
   // onUserAdded(): Observable<any> {
