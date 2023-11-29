@@ -48,14 +48,18 @@ img{
     margin-top: 2rem;
 }
 .btn-add {
-    border: 0px;  
+    border: 0px; 
+    transition: background-color 0.3s; 
+}
+.btn-add:hover{
+    background-color: gray;
 }
 
 .delete-button{
     margin-left: 9rem;
 }
 #delete{
- border:0px;
+ border:none;
 }
 .items-container-checkout{
     background-color: #f4f4f4;
