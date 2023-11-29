@@ -23,6 +23,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 20rem;
+    text-decoration: none;
 }
 .img-container{
     height: 100%;
@@ -51,6 +53,9 @@ img{
 
 .delete-button{
     margin-left: 9rem;
+}
+#delete{
+ border:0px;
 }
 .items-container-checkout{
     background-color: #f4f4f4;
