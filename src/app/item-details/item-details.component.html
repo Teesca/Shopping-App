@@ -1,25 +1,21 @@
 <div class="main">
 
-    <div class="topc"><b>FashionFlare Tech & Treasures <span class="tit"> / Categories / Products /</span> Monitor</b> </div>
-    <div class="direction">
+    <div class="topc"><b>FashionFlare Tech & Treasures <span class="tit"> / Categories / Products /</span> Monitor</b>
+    </div>
+    <div class="direction" >
         <div class="left">
-            <img class="monitor" src="https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg" alt="monitor">
+            <img class="monitor" [src]="productDeatail.image" alt="monitor" >
         </div>
-        <div *ngIf="right">
+        <div class="right">
             <div class="title_category_price">
-                <p class="title">Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide
-                    Screen QLED
-                    <br><span class="category">Electronics</span>
+                <p class="title">{{ productDeatail.title}}
+                    <br><span class="category">{{ productDeatail.category}}</span>
                 </p>
-                <p class="price">R999</p>
+                <p class="price">R {{ productDeatail.price}}</p>
             </div>
             <div class="desc-container">
                 <p class="dec">
-                    49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT
-                    (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate
-                    color
-                    and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur,
-                    ghosting, and reduce input lag
+                    {{ productDeatail.description}}
                 </p>
             </div>
             <div class="button-container">

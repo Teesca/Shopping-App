@@ -10,13 +10,13 @@ import { SubnavComponent } from './subnav/subnav.component';
 import { DisplayComponent } from './display/display.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SubnavComponent,
-    DisplayComponent,
     FooterComponent,
     ItemDetailsComponent
     
@@ -25,7 +25,14 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule, 
+    RouterOutlet, 
+    RouterLink, 
+    RouterLinkActive,
+    DisplayComponent,
+    SubnavComponent,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

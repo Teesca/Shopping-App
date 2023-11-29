@@ -13,27 +13,27 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1em;  /* Adjusted gap value */
+    gap: 1em; 
 }
 
-
   
-  .listing-heading {
+.listing-heading {
     padding: 10px 20px 0 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
   }
-  .listing-photo {
+
+.listing-photo {
     height: 250px;
     width: 100%;   
     
   }
-  .listing-price {
+.listing-price {
     padding: 10px 20px 0 20px;
     font-weight: bolder;
   }
-  
+
 .rating{
     padding-left: 14px;
     display: flex;
