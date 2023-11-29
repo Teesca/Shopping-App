@@ -68,6 +68,12 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}`);
   }
 
+  //Slindelo
+  //a method to fetch the item details from the fake API.
+  getItemDetails(itemId: number): Observable<any> {
+    const url = `${this.apiUrl}/${itemId}`;
+    return this.http.get(url);
+  }
   
   
 
