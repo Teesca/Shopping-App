@@ -1,0 +1,8 @@
+<!-- app.component.html -->
+<div class="oval-nav">
+  <div class="nav-item" data-category="all" [style.background-color]="allBackgroundColor" (click)="changeBackgroundColor('all')">All</div>
+  <div class="nav-item" data-category="men" [style.background-color]="menBackgroundColor" (click)="changeBackgroundColor('men')">Men</div>
+  <div class="nav-item" data-category="women" [style.background-color]="womenBackgroundColor" (click)="changeBackgroundColor('women')">Women</div>
+  <div class="nav-item" data-category="electronics" [style.background-color]="electronicsBackgroundColor" (click)="changeBackgroundColor('electronics')">Electronics</div>
+  <div class="nav-item" data-category="jewelery" [style.background-color]="jewelryBackgroundColor" (click)="changeBackgroundColor('jewelry')">Jewelry</div>
+</div>

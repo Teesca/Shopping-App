@@ -5,10 +5,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
-import { User } from '@app/_models';
+import { User } from '@app/ _models';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
+    private apiUrl = 'https://fakestoreapi.com/products';
     private userSubject: BehaviorSubject<User | null>;
     public user: Observable<User | null>;
 
