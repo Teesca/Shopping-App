@@ -4,8 +4,8 @@
 <!-- All products -->
  <div *ngIf="listToDisplay == 'all'"> 
   <div class="listing">
-    <div *ngFor="let item of allProductsData; let i = index" class="item-container" [attr.data-index]="allProductsData[i].id">
-      <div class="item" [attr.data-index]="allProductsData[i].id" >
+    <div *ngFor="let item of allProductsData; let i = index" class="item-container" >
+      <div class="item" >
         <div class="holder">
           <img class="listing-photo" [src]="allProductsData[i].image" alt="">
           <h6 class="listing-heading" [routerLink]="['/products', allProductsData[i].id]">{{ allProductsData[i].title }}</h6>
@@ -26,7 +26,7 @@
 <div *ngIf="listToDisplay == 'men'">
  <div class="listing" >
   <div *ngFor="let item of menClothingData; let i = index" class="item-container">
-    <div class="item" [attr.data-index]="menClothingData[i].id" >
+    <div class="item"  >
       <div class="holder">
         <img class="listing-photo" [src]="menClothingData[i].image" alt="">
         <h6 class="listing-heading" [routerLink]="['/products', menClothingData[i].id]">{{ menClothingData[i].title }}</h6>
@@ -48,7 +48,7 @@
 <div *ngIf="listToDisplay == 'women'">
   <div class="listing">
     <div *ngFor="let item of womenClothingData; let i = index" class="item-container">
-      <div class="item" [attr.data-index]="womenClothingData[i].id" >
+      <div class="item"  >
         <div class="holder">
           <img class="listing-photo" [src]="womenClothingData[i].image" alt="">
           <h6 class="listing-heading" [routerLink]="['/products', womenClothingData[i].id]">{{ womenClothingData[i].title }}</h6>
@@ -69,7 +69,7 @@
 <div *ngIf="listToDisplay == 'electronics'">
   <div class="listing">
     <div *ngFor="let item of electronicsData; let i = index" class="item-container">
-      <div class="item" [attr.data-index]="electronicsData[i].id" >
+      <div class="item"  >
         <div class="holder">
           <img class="listing-photo" [src]="electronicsData[i].image" alt="">
           <h6 class="listing-heading" [routerLink]="['/products', electronicsData[i].id]">{{ electronicsData[i].title }}</h6>
@@ -90,7 +90,7 @@
 <div *ngIf="listToDisplay == 'jewelery'">
  <div class="listing">
   <div *ngFor="let item of jeweleryData; let i = index" class="item-container">
-    <div class="item" [attr.data-index]="jeweleryData[i].id" >
+    <div class="item" >
       <div class="holder">
         <img class="listing-photo" [src]="jeweleryData[i].image" alt="">
         <h6 class="listing-heading" [routerLink]="['/products', jeweleryData[i].id]">{{ jeweleryData[i].title }}</h6>
