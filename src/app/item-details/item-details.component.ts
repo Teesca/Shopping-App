@@ -30,8 +30,17 @@ export class ItemDetailsComponent {
             }
           );
         });
-      }
+    }
 
-  
+    addToCart() {
+      this.apiService.addToCart(this.productDeatail).subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.error('Failed to add item to cart.', error);
+        }
+      );
+    }
 
 }
