@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ApiService } from '../api.service';
 
 @Component({
+  standalone: true,
   selector: 'app-subnav',
   templateUrl: './subnav.component.html',
   styleUrls: ['./subnav.component.css']
