@@ -1,0 +1,73 @@
+<div class="main-container">
+
+
+    <div class="items-container" id="item-heading">
+    <div class="cart-heading"><p style="font-weight: 400; font-size: large;">Cart</p></div>
+        <div style="display: flex; flex-direction: row;" class="cart-link"> 
+            <a link href="#">Home</a><p style="padding-left: .5rem;">Cart</p></div>
+  
+
+    </div><br>
+
+    <div *ngFor="let item of allproductsFromCart; let i = index" >
+        <div>
+            <div class="items-container">
+                <div class="img-container">
+                    <img [src]="allproductsFromCart[i].image">
+                </div>
+                <div class="item-description">
+        
+                    <div class="item-description-top">
+                        <p style="font-weight: bold;">{{allproductsFromCart[i].description}}</p>
+                        <b id="price">R {{allproductsFromCart[i].price}}</b>
+                    </div>
+                    <div class="item-description-bottom">
+                        <div class="qty-buttons">
+                            <button class="btn-add">+</button>
+                            <label class="qty" id="quantity">1</label>
+                            <button class="btn-add">-</button>
+                        </div>
+                        <div class="delete-button">
+                           
+                            <button id="delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-trash" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                <path
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                            </svg></button>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+
+    </div>
+
+
+    
+    <div class="items-container-checkout">
+        <div class="item-summary">
+            <b>Order Summary:</b>
+            <b style="margin-left: 5rem;" id="total-price">R8599.98</b>
+        </div>
+        <div class="checkout">
+            <button class="checkout-btn">Checkout Now</button>
+        </div>
+    </div>
+
+    <div class="payment-methods">
+        <div class="methods-top">
+            We accept
+        </div>
+        <div class="methods-bottom">
+            <img class="visa" src="https://logowik.com/content/uploads/images/visa-payment-card1873.jpg">
+           <img class="visa" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/1280px-MasterCard_Logo.svg.png">
+        <img class="visa" src="https://1000logos.net/wp-content/uploads/2021/04/Paypal-logo.png">
+        </div>
+       
+    </div>
+
+
+</div>

@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     RouterLinkActive,
     DisplayComponent,
     SubnavComponent,
-    AppRoutingModule
+    AppRoutingModule,
+    CartComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
