@@ -9,11 +9,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ApiService {
 
   private apiUrl = 'https://fakestoreapi.com/products';
-  private apiUrllocal = 'http://localhost:3000/cart';
+  private apiUrllocal = 'http://localhost:3000';
 
   private showProducts = new BehaviorSubject<string>('all');
   showProductsObs$ = this.showProducts.asObservable();
-
+  users: any[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -77,10 +77,6 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  addToCart(product: number): Observable<any> {
-    return this.http.post<any>(`${this.apiUrllocal}`, product, this.httpOptions)
-  }
-
   // Moloro
   getCart(): Observable<any> {
     const url = `${this.apiUrllocal}`;
@@ -88,19 +84,45 @@ export class ApiService {
   }
 
 
+  register(user: any): Observable<any> {
+    const url = `${this.apiUrllocal}/users/register`;
+    return this.http.post(url, user, this.httpOptions);
+  }
 
+  login(credentials: { email: string, password: string }): Observable<any> {
+    const url = `${this.apiUrllocal}/login`;
+    return this.http.post(url, credentials, this.httpOptions);
+  }
 
-  // // Observable to subscribe to user added events
-  // onUserAdded(): Observable<any> {
-  //   return this.userAddedSubject.asObservable();
-  // }
+  addToCart(product: any, userEmail: string): Observable<any> {
+    
+    this.getUserByEmail(userEmail).subscribe(data => {
+        this.users = data;
+    })
+    console.log(this.users);
 
+    // If the user is found, add the product to their cart
+    if (this.users.length > 0) {
+      this.users[0].cart.push(product);
 
-  // private handleError<T>(operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     console.error(error);
-  //     console.log(`${operation} failed: ${error.message}`);
-  //     return of(result as T);
-  //   };
-  //}
+      // Update the user's cart in the JSON-Server
+      return this.updateUserCart(this.users[0]).pipe(
+        tap(() => console.log('Product added to cart successfully'))
+      );
+    }
+
+    // If the user is not found, handle accordingly (return an observable with an error)
+    return of({ error: 'User not found' });
+  }
+
+  getUserByEmail(email: string): Observable<any> {
+    console.log('Getting user by email');
+    return  this.http.get<any[]>(`${this.apiUrllocal}/users?email=${email}`);
+  }
+
+  updateUserCart(user: any): Observable<any> {
+    // Update the user's cart in the JSON-Server
+    return this.http.put(`${this.apiUrllocal}/users/${user.id}`, user, this.httpOptions);
+  }
+
 }

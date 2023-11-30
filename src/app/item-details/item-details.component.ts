@@ -33,7 +33,7 @@ export class ItemDetailsComponent {
     }
 
     addToCart() {
-      this.apiService.addToCart(this.productDeatail).subscribe(
+      this.apiService.addToCart(this.productDeatail,String(localStorage.getItem('email'))).subscribe(
         (data) => {
           console.log(data);
         },
