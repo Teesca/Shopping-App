@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ApiService {
 
   private apiUrl = 'https://fakestoreapi.com/products';
-  private apiUrllocal = 'http://localhost:3000/cart';
+  private apiUrllocal = 'http://localhost:3000';
 
   private showProducts = new BehaviorSubject<string>('all');
   showProductsObs$ = this.showProducts.asObservable();
@@ -88,19 +88,13 @@ export class ApiService {
   }
 
 
+  register(user: any): Observable<any> {
+    const url = `${this.apiUrllocal}/users/register`;
+    return this.http.post(url, user, this.httpOptions);
+  }
 
-
-  // // Observable to subscribe to user added events
-  // onUserAdded(): Observable<any> {
-  //   return this.userAddedSubject.asObservable();
-  // }
-
-
-  // private handleError<T>(operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     console.error(error);
-  //     console.log(`${operation} failed: ${error.message}`);
-  //     return of(result as T);
-  //   };
-  //}
+  login(credentials: { email: string, password: string }): Observable<any> {
+    const url = `${this.apiUrllocal}/login`;
+    return this.http.post(url, credentials, this.httpOptions);
+  }
 }

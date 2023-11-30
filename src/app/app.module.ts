@@ -13,13 +13,17 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
+import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    RegisterComponent,
+    LoginComponent
+  
     
   ],
   imports: [
@@ -34,7 +38,10 @@ import { CartComponent } from './cart/cart.component';
     DisplayComponent,
     SubnavComponent,
     AppRoutingModule,
-    CartComponent
+    CartComponent,
+    FormsModule,
+    NavbarComponent,
+    FooterComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
