@@ -24,6 +24,34 @@ export class CartComponent {
        console.log(this.allproductsFromCart)
     })
   }
+  listToDisplay: string = 'all';
+  
+
+  //qantity increment n decrement
+ 
+  //for deleting products from cart
+
+
+  //getting total
+  getCartTotal() {
+    return this.allproductsFromCart.reduce((sum, item) => sum + item.price, 0);
+  }
+
+  //for qty buttonslet number = 0;
+
+  number = 0;
+
+  increaseNumber() {
+    this.number++;
+  }
+
+  decreaseNumber() {
+    this.number--;
+  }
+
+
+
+
 
 
 }
