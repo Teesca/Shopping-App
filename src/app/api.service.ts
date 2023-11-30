@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ApiService {
 
   private apiUrl = 'https://fakestoreapi.com/products';
-  private apiUrllocal = 'http://localhost:3000/cart';
+  private apiUrllocal = 'http://localhost:4000/cart';
 
   private showProducts = new BehaviorSubject<string>('all');
   showProductsObs$ = this.showProducts.asObservable();
@@ -80,7 +80,6 @@ export class ApiService {
   addToCart(product: number): Observable<any> {
     return this.http.post<any>(`${this.apiUrllocal}`, product, this.httpOptions)
   }
-
 
   // // Observable to subscribe to user added events
   // onUserAdded(): Observable<any> {
