@@ -32,6 +32,7 @@ export class RegisterComponent {
       response => {
         // Handle successful login
         console.log('Registration successful', response);
+        localStorage.setItem('email',this.user.email)
         this.router.navigate(['/']);
       },
       (error: HttpErrorResponse) => {
