@@ -1,5 +1,15 @@
 {
   "users": [
-
+    {
+      "email": "Ncosanetshepiso@gmail.com",
+      "password": "$2a$10$Sqlzq3LpGc9TbnCD4pRS0e5lQy6Ob9Y/1UfQH9YrA879bm180JEQu",
+      "id": 1701343111396,
+      "username": "Intel",
+      "name": {
+        "firstname": "Tshepiso",
+        "lastname": "Ncosane"
+      },
+      "cart": []
+    }
   ]
 }
