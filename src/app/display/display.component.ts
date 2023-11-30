@@ -3,6 +3,8 @@ import { ApiService } from '../api.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SubnavComponent } from '../subnav/subnav.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   standalone: true,
@@ -12,7 +14,9 @@ import { SubnavComponent } from '../subnav/subnav.component';
   imports: [
     CommonModule,
     RouterModule,
-    SubnavComponent
+    SubnavComponent,
+    NavbarComponent,
+    FooterComponent
   ],
 })
 export class DisplayComponent {
