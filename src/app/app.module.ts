@@ -14,6 +14,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SubnavComponent } from './subnav/subnav.component';
 import { DisplayComponent } from './display/display.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './account/login.component';
+import { RegisterComponent } from './account';
+import { AlertComponent } from './_components';
+//import { LogoutComponent } from './account/logout.component';
+
 
 @NgModule({
     imports: [
@@ -24,8 +29,15 @@ import { FooterComponent } from './footer/footer.component';
     ],
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        SubnavComponent,
+        FooterComponent,
+        DisplayComponent,
+        LoginComponent,
+        RegisterComponent,
+        AlertComponent,
         
+       
     ],
 
         // provider used to create fake backe
