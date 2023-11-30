@@ -24,7 +24,7 @@ export class LoginComponent {
         // Handle successful login
         console.log('Login successful', response);
         localStorage.setItem('email',this.loginData.email)
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       },
       (error: HttpErrorResponse) => {
         // Handle login error
