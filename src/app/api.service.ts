@@ -113,7 +113,6 @@ export class ApiService {
   }
 
   getUserByEmail(email: string): Observable<any> {
-    console.log('Getting user by email');
     return  this.http.get<any[]>(`${this.apiUrllocal}/users?email=${email}`);
   }
 
@@ -127,6 +126,26 @@ export class ApiService {
     return this.getUserByEmail(userEmail).pipe(
       tap(user => console.log('User cart fetched successfully', user)),
       catchError(this.handleError<any>('getUserCart'))
+    );
+  }
+
+  deleteItemFromCart(productId: number, userEmail: string): Observable<any> {
+    return this.getUserByEmail(userEmail).pipe(
+      tap(users => {
+        if (users && users.length > 0) {
+          const updatedCart = users[0].cart.filter((item: { id: number; }) => item.id !== productId);
+          users[0].cart = updatedCart;
+
+          // Update the user's cart in the JSON-Server
+          this.updateUserCart(users[0]).subscribe(
+            () => console.log('Item removed from cart successfully'),
+            error => console.error('Failed to remove item from cart:', error)
+          );
+        } else {
+          console.error('User not found');
+        }
+      }),
+      catchError(this.handleError<any>('deleteItemFromCart'))
     );
   }
 
