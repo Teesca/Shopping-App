@@ -9,11 +9,13 @@
 .listing {
     padding-left: 1em;
     padding-right: 1em;
-    margin-top: 2em;
+    margin-top: 10em;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em; 
+    height: 100vh;
+    overflow: scroll;
 }
 
   
