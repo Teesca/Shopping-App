@@ -33,8 +33,8 @@ export class ItemDetailsComponent {
         });
     }
 
-    addToCart() {
-      this.checkProductInCart();
+    async addToCart() {
+      await this.checkProductInCart();
       if(this.isProductInCart == false){
         this.apiService.addToCart(this.productDeatail,String(localStorage.getItem('email'))).subscribe(
           (data) => {
@@ -49,28 +49,33 @@ export class ItemDetailsComponent {
     }
 
 
-    private checkProductInCart() {
-      const userEmail = String(localStorage.getItem('email'));
-  
-      // Call the API service to get the user's cart
-      this.apiService.getUserCart(userEmail).subscribe(
-        (data) => {
-          const userCart = data[0].cart;
-          // Check if the product is in the user's cart
-          console.log(userCart)
-          this.isProductInCart = false;
-          for (let i = 0; i < userCart.length; i++) {
-            if (userCart[i].id === this.productDeatail.id) {
-              console.log("PRODUCT EXISTS");
-              this.isProductInCart = true;
-              break;
+    private checkProductInCart(): Promise<void> {
+      return new Promise<void>((resolve, reject) => {
+        const userEmail = String(localStorage.getItem('email'));
+    
+        // Call the API service to get the user's cart
+        this.apiService.getUserCart(userEmail).subscribe(
+          (data) => {
+            const userCart = data[0].cart;
+            // Check if the product is in the user's cart
+            console.log(userCart)
+            this.isProductInCart = false;
+            for (let i = 0; i < userCart.length; i++) {
+              if (userCart[i].id === this.productDeatail.id) {
+                console.log("PRODUCT EXISTS");
+                this.isProductInCart = true;
+                break;
+              }
             }
+            resolve();
+          },
+          (error) => {
+            console.error('Failed to check if product is in cart.', error);
+            reject(error);
           }
-        },
-        (error) => {
-          console.error('Failed to check if product is in cart.', error);
-        }
-      );
+        );
+      });
     }
+    
 
 }
