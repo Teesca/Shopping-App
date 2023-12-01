@@ -23,7 +23,7 @@ import { RouterModule } from '@angular/router';
 export class CartComponent {
 
   allproductsFromCart: any[] = [];
-  total: number =  1;
+  total: number =  0;
 
   quantities: { [key: number]: number } = {};
 
