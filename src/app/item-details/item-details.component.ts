@@ -11,6 +11,7 @@ export class ItemDetailsComponent {
 
   productDeatail: any = {};
   buttonClicked: boolean = false;
+  isProductInCart?: boolean;
 
   
   constructor(private apiService: ApiService,private route: ActivatedRoute){}
@@ -34,18 +35,43 @@ export class ItemDetailsComponent {
     }
 
     addToCart() {
-
-      if (!this.buttonClicked) {
-        this.buttonClicked = true;
+      this.checkProductInCart();
+      if(this.isProductInCart == false){
         this.apiService.addToCart(this.productDeatail,String(localStorage.getItem('email'))).subscribe(
           (data) => {
-            console.log(data);
+            console.log("added item to cart");
           },
           (error) => {
             console.error('Failed to add item to cart.', error);
           }
         );
       }
+
+    }
+
+
+    private checkProductInCart() {
+      const userEmail = String(localStorage.getItem('email'));
+  
+      // Call the API service to get the user's cart
+      this.apiService.getUserCart(userEmail).subscribe(
+        (data) => {
+          const userCart = data[0].cart;
+          // Check if the product is in the user's cart
+          console.log(userCart)
+          this.isProductInCart = false;
+          for (let i = 0; i < userCart.length; i++) {
+            if (userCart[i].id === this.productDeatail.id) {
+              console.log("PRODUCT EXISTS");
+              this.isProductInCart = true;
+              break;
+            }
+          }
+        },
+        (error) => {
+          console.error('Failed to check if product is in cart.', error);
+        }
+      );
     }
 
 }

@@ -1,127 +1,164 @@
 .main-container{
-    height:100vh;
+    height:85vh;
     width:100%;
-    /*background-color: aquamarine;*/
     display:flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 5rem;
-    overflow: auto;
-    padding-top: 50px;
+    overflow: scroll;
+    margin-top: 6em;
 }
-.items-container{
-    background-color: #f4f4f4;
-    height: 8rem;
-    width:80%;
 
+.carttext{
+    font-size: xx-large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    margin-top: 1em;
+}
+
+.items{
+    width: 100%;
     display: flex;
     flex-direction: row;
+    gap: 1em;
+    border-radius: 1.2em;
+    padding: 1px;
+    border: 1px solid ;
 }
-#item-heading{
+
+.holderdiv{
+    display: flex; 
+    flex-direction: column; 
+    gap: 2em; 
+    width: 100%; 
+    padding: 2em;
+}
+
+.description{
+    padding: 1em;
+}
+
+.right-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20rem;
-    text-decoration: none;
 }
-.img-container{
-    height: 100%;
-    width: 20%;
-   /* background-color: blueviolet;*/
+
+.btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 2em;
+    gap: 8em;
 }
+
 img{
-    height:100%;
-    width: 75%;
+    width: 12.5em; 
+    height: 12.5em; 
 }
-.item-description{
-    height:60%;
-    width:100%;
-    display: flex;
-    flex-direction: column;
+
+.btn-add{
+    padding: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 100%;
+    background-color: inherit;
+    border: 1px solid ;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
-.item-description-bottom{
+
+.btn-minus{
+    padding: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 100%;
+    background-color: inherit;
+    border: 1px solid ;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+}
+
+.btn-center{
+    padding: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 100%;
+    background-color: inherit;
+    border: 1px solid ;
+}
+
+.qty-buttons{
+    border-radius: 1em;
+    background-color: rgb(210, 210, 210);
+    align-items: center;
+    width: 2em;
     display: flex;
     flex-direction: row;
-    padding-left: 50%;
-    margin-top: 2rem;
-}
-.btn-add {
-    border: 0px; 
-    transition: background-color 0.3s; 
-}
-.btn-add:hover{
-    background-color: gray;
 }
 
-.delete-button{
-    margin-left: 9rem;
+.qty{
+    border: 1px solid;
+    height: 100%;
+    margin-top: 1em;
 }
+
 #delete{
- border:none;
+    background-color: inherit;
+    border: 1px solid;
+    border-radius: 1em;
 }
-.items-container-checkout{
-    background-color: #f4f4f4;
-    height: 10rem;
-    width:80%;
-   display: flex;
-   flex-direction: column;
-   margin-top: 3rem;
 
-}
 .item-summary{
     display: flex;
     flex-direction: row;
-    width:100%;
-    height: 50%;
-    padding-left:2rem;
-    font-size: large;
-    margin-bottom: 3rem;
-    padding-top: 1rem;
-}
-.checkout{
-    display: flex;
     justify-content: center;
     align-items: center;
-    width:100%;
-  
-}
-.checkout-btn{
-    background-color: black;
-    color: white;
-    font-weight: bold;
-    height: 4rem;
-    width: 12rem;
-    margin-bottom: 1rem;
+    gap: 1em;
 }
 
-.payment-methods{
-    display: flex;
-    flex-direction: column;
-    justify-content:left;
-    height: 200px;
-    width: 80%;
-  
-    margin-top: 1rem;
+.orderText{
+    font-size: xx-large;
+    font-weight: bolder;
+   
 }
-.methods-top{
-    height: 50px;
-    width: 75%;
- 
-    font-weight: bold;
-    font-size: large;
-    padding-left:1rem;
-    padding-top: 1rem;
-}
-.methods-bottom{
+
+.items-container-checkout{
     display: flex;
     flex-direction: row;
-    height: 150px;
-   padding-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    
+} 
+
+.checkout-btn{
+    font-size: large;
+    background-color: black;
+    color: white;
+    width: 20em;
+    height: 4em;
+    border-radius: 2em;
 }
-.visa{
-    height: 100px;
-    width:120px;
-    padding-left: 1rem;
+.items-container-checkout{
+   padding: 2em;
+
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+.center img {
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    outline: none;
+    height: 16em;
+    width: 300px;
+    margin: 20px 0px;
+}
+
+h4,
+h6 {
+    font-weight: 400;
 }

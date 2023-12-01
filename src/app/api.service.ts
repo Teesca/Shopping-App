@@ -17,6 +17,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
+
   showAllProducts() {
     console.log('showAllProducts');
     this.showProducts.next('all');
@@ -46,10 +52,6 @@ export class ApiService {
     return this.showProducts.value;
   }
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-
   getAllWomenClothing(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/category/women's clothing`);
   }
@@ -77,11 +79,6 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  // Moloro
-  getCart(): Observable<any> {
-    const url = `${this.apiUrllocal}`;
-    return this.http.get(url);
-  }
 
   register(user: any): Observable<any> {
     const url = `${this.apiUrllocal}/users/register`;
@@ -106,7 +103,8 @@ export class ApiService {
 
       // Update the user's cart in the JSON-Server
       return this.updateUserCart(this.users[0]).pipe(
-        tap(() => console.log('Product added to cart successfully'))
+        tap(() => console.log('Product added to cart successfully')),
+        catchError(this.handleError<any>('updateUserCart'))
       );
     }
 
@@ -115,7 +113,6 @@ export class ApiService {
   }
 
   getUserByEmail(email: string): Observable<any> {
-    console.log('Getting user by email');
     return  this.http.get<any[]>(`${this.apiUrllocal}/users?email=${email}`);
   }
 
@@ -124,4 +121,38 @@ export class ApiService {
     return this.http.put(`${this.apiUrllocal}/users/${user.id}`, user, this.httpOptions);
   }
 
+
+  getUserCart(userEmail: string): Observable<any> {
+    return this.getUserByEmail(userEmail).pipe(
+      tap(user => console.log('User cart fetched successfully', user)),
+      catchError(this.handleError<any>('getUserCart'))
+    );
+  }
+
+  deleteItemFromCart(productId: number, userEmail: string): Observable<any> {
+    return this.getUserByEmail(userEmail).pipe(
+      tap(users => {
+        if (users && users.length > 0) {
+          const updatedCart = users[0].cart.filter((item: { id: number; }) => item.id !== productId);
+          users[0].cart = updatedCart;
+
+          // Update the user's cart in the JSON-Server
+          this.updateUserCart(users[0]).subscribe(
+            () => console.log('Item removed from cart successfully'),
+            error => console.error('Failed to remove item from cart:', error)
+          );
+        } else {
+          console.error('User not found');
+        }
+      }),
+      catchError(this.handleError<any>('deleteItemFromCart'))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
 }
