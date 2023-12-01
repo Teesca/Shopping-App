@@ -1,40 +1,50 @@
 {
   "users": [
     {
+      "email": "Ncosanetshepiso@gmail.com",
+      "password": "$2a$10$arxDm9GaF7aUycAwrM9Cs.gJcV8iGnWcXHwl4B/B4ZwA2K37LsXdy",
+      "id": 1701354494317,
+      "username": "Intel",
+      "name": {
+        "firstname": "Tshepiso",
+        "lastname": "Ncosane"
+      },
+      "cart": []
+    },
+    {
+      "email": "Ncosanetshepiso1@gmail.com",
+      "password": "$2a$10$Q3epilLxxv6hnCPgrcQZ8.3QZOhcVZYtqdO5NdFEME4phpqeTjShi",
+      "id": 1701354558050,
+      "username": "Intel",
+      "name": {
+        "firstname": "Tshepiso",
+        "lastname": "Ncosane"
+      },
+      "cart": [
+        {
+          "id": 4,
+          "title": "Mens Casual Slim Fit",
+          "price": 15.99,
+          "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
+          "rating": {
+            "rate": 2.1,
+            "count": 430
+          }
+        }
+      ]
+    },
+    {
       "email": "sefatsathabang2003@gmail.com",
-      "password": "$2a$10$/wuXEPtS0.eig1QJ4.R0Ze/13LnC1u1.DIGholH.y1xvn7ZczX9RW",
-      "id": 1701346627456,
+      "password": "$2a$10$JuQykkqtwkPsBP3WaiN12uVEym1V6ZfCaswoUWF1uUBBssqvbYWZe",
+      "id": 1701354825583,
       "username": "Ntala",
       "name": {
         "firstname": "TG",
         "lastname": "SEFATSA"
       },
-      "cart": [
-        {
-          "id": 18,
-          "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
-          "price": 9.85,
-          "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
-          "category": "women's clothing",
-          "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
-          "rating": {
-            "rate": 4.7,
-            "count": 130
-          }
-        },
-        {
-          "id": 18,
-          "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
-          "price": 9.85,
-          "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
-          "category": "women's clothing",
-          "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
-          "rating": {
-            "rate": 4.7,
-            "count": 130
-          }
-        }
-      ]
+      "cart": []
     }
   ]
 }
