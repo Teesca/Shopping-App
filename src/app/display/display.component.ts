@@ -33,6 +33,9 @@ export class DisplayComponent {
     this.apiService.showProductsObs$.subscribe(data => {
        this.universalDisplay(data);
     });
+    
+    
+
   }
 
   universalDisplay(data: any){
@@ -67,7 +70,6 @@ export class DisplayComponent {
     this.apiService.getAllProducts().subscribe(
       data => {
         this.allProductsData = data;
-        console.log('Data received:', this.allProductsData);
       },
       error => {
         console.error('Error fetching all-products data:', error);
@@ -80,7 +82,6 @@ export class DisplayComponent {
     this.apiService.getAllMenClothing().subscribe(
       data => {
         this.menClothingData = data;
-        console.log('Data received:', this.menClothingData);
       },
       error => {
         console.error('Error fetching men\'s clothing data:', error);
@@ -92,7 +93,6 @@ export class DisplayComponent {
     this.apiService.getAllWomenClothing().subscribe(
       data => {
         this.womenClothingData = data;
-        console.log('Data received:', this.womenClothingData);
       },
       error => {
         console.error('Error fetching women\'s clothing data:', error);
@@ -103,7 +103,6 @@ export class DisplayComponent {
     this.apiService.getAllElectronics().subscribe(
       data => {
         this.electronicsData = data;
-        console.log('Data received:', this.electronicsData);
       },
       error => {
         console.error('Error fetching electronics data:', error);
@@ -114,7 +113,6 @@ export class DisplayComponent {
     this.apiService.getAllJewelery().subscribe(
       data => {
         this.jeweleryData = data;
-        console.log('Data received:', this.jeweleryData);
       },
       error => {
         console.error('Error fetching men\'s clothing data:', error);

@@ -28,10 +28,9 @@ export class RegisterComponent {
 
   registerUser(){
     console.log(this.user);
-    this.apiService.register(this.user).subscribe(
-      response => {
+    this.apiService.register(this.user).subscribe(     
+      () => {
         // Handle successful login
-        console.log('Registration successful', response);
         this.router.navigate(['/']);
       },
       (error: HttpErrorResponse) => {
@@ -39,10 +38,8 @@ export class RegisterComponent {
         if (error.status === 400) {
           console.error('Bad Request: Invalid credentials', error);
           alert('Registration error = '+ error.error);
-          // Display an error message to the user, e.g., set a variable for an error message in your component
         } else {
           console.error('Login error', error);
-          // Handle other types of errors
         }
       }
     );

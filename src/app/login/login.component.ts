@@ -22,20 +22,14 @@ export class LoginComponent {
     this.apiService.login(this.loginData).subscribe(
       response => {
         // Handle successful login
-        console.log('Login successful', response);
-        localStorage.setItem('email',this.loginData.email)
+        console.log('User Login Successful');
+        const token  = String(response.user.multiFactor.user.accessToken);
+        localStorage.setItem('accessToken', token);
         this.router.navigate(['/home']);
       },
-      (error: HttpErrorResponse) => {
-        // Handle login error
-        if (error.status === 400) {
-          console.error('Bad Request: Invalid credentials', error);
-          alert('Login error = '+ error.error);
-          // Display an error message to the user, e.g., set a variable for an error message in your component
-        } else {
-          console.error('Login error', error);
-          // Handle other types of errors
-        }
+      error => {
+        console.error('Login failed',error);
+        alert("Login Failed : " + error)
       }
     );
   }
