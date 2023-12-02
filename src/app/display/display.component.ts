@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { SubnavComponent } from '../subnav/subnav.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
-import { Observable } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -71,7 +70,6 @@ export class DisplayComponent {
     this.apiService.getAllProducts().subscribe(
       data => {
         this.allProductsData = data;
-        // console.log('Data received:', this.allProductsData);
       },
       error => {
         console.error('Error fetching all-products data:', error);

@@ -25,15 +25,14 @@ export class ItemDetailsComponent {
   constructor(private apiService: ApiService,private route: ActivatedRoute,private auth: AngularFireAuth, private firestore: AngularFirestore){}
 
   ngOnInit() {
-    // Get the itemId from the route parameters
+    // Getting the itemId from the route parameters
     this.route.paramMap.subscribe(params => {
       const itemId = Number(params.get('id'));
 
-      // Call the API service to fetch item details
+      // Calling the API service to fetch item details
       this.apiService.getItemDetails(itemId).subscribe(
             (data) => {
               this.productDeatail = data;
-              console.log('Data received:', this.productDeatail);
             },
             (error) => {
               console.error('Error fetching product details:', error);
@@ -49,7 +48,7 @@ export class ItemDetailsComponent {
             // Reference to the user document in Firestore
             const userDocRef = this.firestore.collection('users').doc(user.uid);
       
-            // Use Firestore transaction to update the cart array
+            // Using Firestore transaction to update the cart array
             this.firestore.firestore.runTransaction((transaction) => {
               return transaction.get(userDocRef.ref).then((userDoc) => {
                 if (!userDoc.exists) {
