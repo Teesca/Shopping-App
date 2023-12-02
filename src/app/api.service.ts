@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject, from, of, throwError } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+
+//firebase imports
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +20,7 @@ export class ApiService {
   showProductsObs$ = this.showProducts.asObservable();
   users: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AngularFireAuth, private firestore: AngularFirestore) { }
 
   
   httpOptions = {
@@ -77,17 +82,6 @@ export class ApiService {
   getItemDetails(itemId: number): Observable<any> {
     const url = `${this.apiUrl}/${itemId}`;
     return this.http.get(url);
-  }
-
-
-  register(user: any): Observable<any> {
-    const url = `${this.apiUrllocal}/users/register`;
-    return this.http.post(url, user, this.httpOptions);
-  }
-
-  login(credentials: { email: string, password: string }): Observable<any> {
-    const url = `${this.apiUrllocal}/login`;
-    return this.http.post(url, credentials, this.httpOptions);
   }
 
   addToCart(product: any, userEmail: string): Observable<any> {
@@ -155,4 +149,58 @@ export class ApiService {
       return of(result as T);
     };
   }
+
+
+
+
+
+
+  /////FIRE BASE FUUNCTIONS
+
+  register(userInfor: any): Observable<any> {
+    return from(this.auth.createUserWithEmailAndPassword(userInfor.email, userInfor.password)
+    .then((userCredential) => {
+            const user = userCredential.user;
+
+            if (user) {
+              return this.firestore.collection('users').doc(user.uid).set({
+                firstName: userInfor.name.firstname,
+                lastName: userInfor.name.lastname,
+                username: userInfor.username,
+                email: userInfor.email,
+                cart: userInfor.cart
+              });
+            }
+            else{
+              throw new Error('User registration failed');
+            }
+        }).
+        catch(error => {
+          console.error('Error during registration:', error);
+          return throwError(error);
+        })
+      );
+  }
+
+  login(credentials: { email: string, password: string }): Observable<any> {
+    return from(this.auth.signInWithEmailAndPassword(credentials.email,credentials.password));
+  }
+
+  getCurrentUserData(): Observable<any> {
+    return this.auth.user.pipe(
+      // SwitchMap to switch from the user observable to a new observable that fetches Firestore data
+      switchMap(user => {
+        // Check if the user is authenticated
+        if (user) {
+          // Assuming you have a 'users' collection in Firestore
+          const userDoc = this.firestore.doc(`users/${user.uid}`);
+          return userDoc.valueChanges(); // Returns an observable of the user's data
+        } else {
+          // If the user is not authenticated, return an empty observable or handle it as needed
+          return of(null);
+        }
+      })
+    );
+  }
+
 }
