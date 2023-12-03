@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgIf } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -22,17 +23,22 @@ export class NavbarComponent {
     });
   }
 
+  //signout user when the sign out button is clicked
   logout() {
     this.auth.signOut()
       .then(() => {
         console.log('User logged out successfully');
         this.loggedin = false;
-        location.reload();
+        this.router.navigate(['']);
       })
       .catch((error: any) => {
         console.error('Logout failed', error);
       });
   }
 
+  //navigate to login component when loggin button is clicked
+  login() {
+    this.router.navigate(['/login']);
+    }
 }
 

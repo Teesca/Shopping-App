@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserData } from '../item-details/cartInterface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,16 +31,12 @@ export class CartComponent {
   allproductsFromCart: any[] = [];
   total: number =  0;
 
-  quantities: { [key: number]: number } = {};
+  quantities: { [key: number]: number } = {}; // the key of the quantity will be the product's id
 
-  constructor(private apiService: ApiService, private auth: AngularFireAuth, private firestore: AngularFirestore){}
-
-  
-
-  
+  constructor(private apiService: ApiService, private auth: AngularFireAuth, private firestore: AngularFirestore, private router: Router){}
 
   ngOnInit() {
-
+    // Get User Cart from firestore, if no user is logged in show empty cart
     this.auth.authState.subscribe(user=>{
       if(user !== null){
         // Reference to the user document in Firestore
@@ -54,7 +51,7 @@ export class CartComponent {
               const userData = userDoc.data() as UserData;
               this.allproductsFromCart = userData.cart || [];
 
-              //initialise quantity for 
+              //initialise quantity for each product in cart
               this.allproductsFromCart.forEach(product => {
                 this.quantities[product.id] = 1;
               });
@@ -67,6 +64,9 @@ export class CartComponent {
             });
           })
           
+      }else{
+        //When you logout while on cart it reload the cart but this time with no user's data
+          this.router.navigate(['/cart']);
       }
     });
   }
@@ -74,14 +74,14 @@ export class CartComponent {
 
   plus(productId: number) {
     this.quantities[productId] += 1;
-    this.total += this.allproductsFromCart.find(item => item.id === productId).price;
+    this.total += this.allproductsFromCart.find(item => item.id === productId).price; //find the product by price and  add the price to total
     this.total=this.roundToTwoDecimals(this.total);
   }
 
   minus(productId: number) {
     if (this.quantities[productId] > 1) {
       this.quantities[productId] -= 1;
-      this.total -= this.allproductsFromCart.find(item => item.id === productId).price;
+      this.total -= this.allproductsFromCart.find(item => item.id === productId).price; //find the product by price and subtract the price from total
       this.total=this.roundToTwoDecimals(this.total);
       
     }
