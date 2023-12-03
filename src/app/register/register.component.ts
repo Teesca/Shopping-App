@@ -31,7 +31,7 @@ export class RegisterComponent {
     this.apiService.register(this.user).subscribe(     
       () => {
         // Handle successful login
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       },
       (error: HttpErrorResponse) => {
         // Handle login error

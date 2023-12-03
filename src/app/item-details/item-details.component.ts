@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserData } from './cartInterface';
 
 
@@ -22,7 +22,8 @@ export class ItemDetailsComponent {
  
 
   
-  constructor(private apiService: ApiService,private route: ActivatedRoute,private auth: AngularFireAuth, private firestore: AngularFirestore){}
+  constructor(private apiService: ApiService,private route: ActivatedRoute,private auth: AngularFireAuth,
+               private firestore: AngularFirestore,private router: Router){}
 
   ngOnInit() {
     // Getting the itemId from the route parameters
@@ -74,6 +75,9 @@ export class ItemDetailsComponent {
             .catch((error) => {
               console.error('Error adding item to cart:', error);
             });
+        }
+        else{
+          this.router.navigate(['/login']);
         }
       })
   

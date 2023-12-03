@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SubnavComponent } from '../subnav/subnav.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   standalone: true,
@@ -27,15 +28,13 @@ export class DisplayComponent {
   jeweleryData: any[] = [];
   electronicsData: any[] = [];
   listToDisplay: string = 'all';
-  constructor( private apiService: ApiService){}
+  constructor( private apiService: ApiService, private auth: AngularFireAuth){}
 
   ngOnInit() {
     this.apiService.showProductsObs$.subscribe(data => {
        this.universalDisplay(data);
     });
     
-    
-
   }
 
   universalDisplay(data: any){
