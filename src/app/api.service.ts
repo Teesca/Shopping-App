@@ -26,29 +26,24 @@ export class ApiService {
   };
 
 
-  // Methode used in the sub nav t help with switching categories
+  // Method used in the sub-nav to help with switching categories
   showAllProducts() {
-    console.log('showAllProducts');
     this.showProducts.next('all');
   }
 
   showElectronics() {
-    console.log('showElectronics');
     this.showProducts.next('electronics');
   }
 
   showMenClothes() {
-    console.log('showMen');
     this.showProducts.next('men');
   }
 
   showWomenClothes() {
-    console.log('showAllWomen');
     this.showProducts.next('women');
   }
 
   showJewelery() {
-    console.log('showAllWomen');
     this.showProducts.next('jewelery');
   }
 
@@ -78,7 +73,6 @@ export class ApiService {
   getAllProducts(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}`);
   }
-
   //------------------------------------------------------------------------
 
   //Slindelo
@@ -87,10 +81,6 @@ export class ApiService {
     const url = `${this.apiUrl}/${itemId}`;
     return this.http.get(url);
   }
-
-
-
-
 
   /////FIRE BASE login and register  FUUNCTIONS
 

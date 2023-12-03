@@ -19,7 +19,8 @@ import { LoginComponent } from './login/login.component';
 
 //FireBase imports
 import {AngularFireModule} from '@angular/fire/compat';
-import {AngularFireAuthModule} from '@angular/fire/compat/auth'
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { UserprofileComponent } from './userprofile/userprofile.component'
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth'
     AppComponent,
     ItemDetailsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    UserprofileComponent
   
     
   ],

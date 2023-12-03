@@ -25,11 +25,7 @@ export class LoginComponent {
         console.log('User Login Successful');
         const token  = String(response.user.multiFactor.user.accessToken);
         localStorage.setItem('accessToken', token);
-
-        
-        // Navigate to the previous route
-        const previousUrl = (this.location.getState() as { url: string }).url;
-        this.router.navigateByUrl(previousUrl || '/');
+        this.router.navigate(['']);
       },
       error => {
         console.error('Login failed',error);

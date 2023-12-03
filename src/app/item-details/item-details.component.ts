@@ -80,7 +80,6 @@ export class ItemDetailsComponent {
           this.router.navigate(['/login']);
         }
       })
-  
     }
 
 

@@ -39,13 +39,23 @@
       }
 
       .bi{
-        color: #f9a0a0;
+        color: red;
         margin-top: 0.38em;
         cursor: pointer;
 
       }
       .bi:hover{
-        color: red;
+        color: #f9a0a0;
+      }
+
+      .biIn{
+        color: green;
+        margin-top: 0.38em;
+        cursor: pointer;
+
+      }
+      .biIn:hover{
+        color: rgb(122, 214, 122);
       }
 
       .search-container {
