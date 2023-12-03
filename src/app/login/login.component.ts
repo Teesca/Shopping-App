@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private apiService: ApiService,private router: Router){}
+  constructor(private apiService: ApiService,private router: Router,  private location: Location){}
 
 
   loginUser() {
@@ -25,7 +25,11 @@ export class LoginComponent {
         console.log('User Login Successful');
         const token  = String(response.user.multiFactor.user.accessToken);
         localStorage.setItem('accessToken', token);
-        this.router.navigate(['/home']);
+
+        
+        // Navigate to the previous route
+        const previousUrl = (this.location.getState() as { url: string }).url;
+        this.router.navigateByUrl(previousUrl || '/');
       },
       error => {
         console.error('Login failed',error);

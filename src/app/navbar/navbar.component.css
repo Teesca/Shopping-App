@@ -37,6 +37,17 @@
       .navbar-nav.ml-auto i:hover {
         color: #f39c12; /* Icon color on hover */
       }
+
+      .bi{
+        color: #f9a0a0;
+        margin-top: 0.38em;
+        cursor: pointer;
+
+      }
+      .bi:hover{
+        color: red;
+      }
+
       .search-container {
         display: flex;
         align-items: center;
