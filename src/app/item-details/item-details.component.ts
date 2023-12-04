@@ -34,13 +34,19 @@ export class ItemDetailsComponent {
         });
     }
 
+    // Function to add a product to the shopping cart
     addToCart() {
+      // Check if the product is already in the cart
       this.checkProductInCart();
+     
       if(this.isProductInCart == false){
+         // Call the addToCart function from the apiService
+        // Pass the product details and the user's email from local storage
         this.apiService.addToCart(this.productDeatail,String(localStorage.getItem('email'))).subscribe(
           (data) => {
             console.log("added item to cart");
           },
+          // Error callback function
           (error) => {
             console.error('Failed to add item to cart.', error);
           }
