@@ -58,7 +58,7 @@ export class ItemDetailsComponent {
       
                 const userData = userDoc.data() as UserData;
                 const currentCart = userData.cart || [];
-                // Add the new product to the cart array if rpoduct doesn't exist init
+                // Add the new product to the cart array if product doesn't exist in it
                if(!this.productExists(product.id,currentCart)){
                   currentCart.push(product);
                   // Update the cart array in the user document
