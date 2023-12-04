@@ -1,31 +1,40 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserData } from './cartInterface';
+
+
+//firebase imports
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css']
 })
+
+
+
 export class ItemDetailsComponent {
 
   productDeatail: any = {};
   buttonClicked: boolean = false;
-  isProductInCart?: boolean;
+ 
 
   
-  constructor(private apiService: ApiService,private route: ActivatedRoute){}
+  constructor(private apiService: ApiService,private route: ActivatedRoute,private auth: AngularFireAuth,
+               private firestore: AngularFirestore,private router: Router){}
 
   ngOnInit() {
-    // Get the itemId from the route parameters
+    // Getting the itemId from the route parameters
     this.route.paramMap.subscribe(params => {
       const itemId = Number(params.get('id'));
 
-      // Call the API service to fetch item details
+      // Calling the API service to fetch item details
       this.apiService.getItemDetails(itemId).subscribe(
             (data) => {
               this.productDeatail = data;
-              console.log('Data received:', this.productDeatail);
             },
             (error) => {
               console.error('Error fetching product details:', error);
@@ -34,50 +43,52 @@ export class ItemDetailsComponent {
         });
     }
 
-    // Function to add a product to the shopping cart
-    addToCart() {
-      // Check if the product is already in the cart
-      this.checkProductInCart();
-     
-      if(this.isProductInCart == false){
-         // Call the addToCart function from the apiService
-        // Pass the product details and the user's email from local storage
-        this.apiService.addToCart(this.productDeatail,String(localStorage.getItem('email'))).subscribe(
-          (data) => {
-            console.log("added item to cart");
-          },
-          // Error callback function
-          (error) => {
-            console.error('Failed to add item to cart.', error);
-          }
-        );
-      }
-
-    }
-
-
-    private checkProductInCart() {
-      const userEmail = String(localStorage.getItem('email'));
-  
-      // Call the API service to get the user's cart
-      this.apiService.getUserCart(userEmail).subscribe(
-        (data) => {
-          const userCart = data[0].cart;
-          // Check if the product is in the user's cart
-          console.log(userCart)
-          this.isProductInCart = false;
-          for (let i = 0; i < userCart.length; i++) {
-            if (userCart[i].id === this.productDeatail.id) {
-              console.log("PRODUCT EXISTS");
-              this.isProductInCart = true;
-              break;
-            }
-          }
-        },
-        (error) => {
-          console.error('Failed to check if product is in cart.', error);
+    addToCart(product: any) {
+      this.auth.authState.subscribe(user=>{
+            if(user !== null){
+                
+            // Reference to the user document in Firestore
+            const userDocRef = this.firestore.collection('users').doc(user.uid);
+      
+            // Using Firestore transaction to update the cart array
+            this.firestore.firestore.runTransaction((transaction) => {
+              return transaction.get(userDocRef.ref).then((userDoc) => {
+                if (!userDoc.exists) {
+                  throw new Error('User document does not exist!');
+                }
+      
+                const userData = userDoc.data() as UserData;
+                const currentCart = userData.cart || [];
+                // Add the new product to the cart array if rpoduct doesn't exist init
+               if(!this.productExists(product.id,currentCart)){
+                  currentCart.push(product);
+                  // Update the cart array in the user document
+                  transaction.update(userDocRef.ref, { cart: currentCart });
+                  console.log('Item added to cart successfully:', product);
+               }
+      
+                return currentCart;
+              });
+            })
+            .then((updatedCart) => {
+              console.log('Cart updated successfully:', updatedCart);
+            })
+            .catch((error) => {
+              console.error('Error adding item to cart:', error);
+            });
         }
-      );
+        else{
+          this.router.navigate(['/login']);
+        }
+      })
     }
+
+
+    productExists(id: number, arr: any) {
+      return arr.some((el: { id: number; }) => {return el.id === id}); 
+    }
+
+    
+    
 
 }

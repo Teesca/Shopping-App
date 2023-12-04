@@ -17,12 +17,19 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 
+//FireBase imports
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { UserprofileComponent } from './userprofile/userprofile.component'
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ItemDetailsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    UserprofileComponent
   
     
   ],
@@ -42,6 +49,15 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     NavbarComponent,
     FooterComponent,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyDwc5VdDjdSkh8td8R3KHY8jkf1CgdyUls",
+      authDomain: "the-can-do.firebaseapp.com",
+      projectId: "the-can-do",
+      storageBucket: "the-can-do.appspot.com",
+      messagingSenderId: "132582455529",
+      appId: "1:132582455529:web:9682186290c27f7ecfd878"
+    }),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

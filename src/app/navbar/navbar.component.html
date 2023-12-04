@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand" href="/home">The Can-Do</a>
+  <a class="navbar-brand" href="/">The Can-Do</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,7 +8,6 @@
       <li class="nav-item">
         <div class="search-container">
             <div class="search-input-container">
-              <!-- <i class="fas fa-search"></i> -->
               <input type="text" class="search-input" placeholder="Search...">
             </div>
           </div>
@@ -16,14 +15,22 @@
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-user-circle"></i></a>
       </li>
+      <li class="nav-item"  *ngIf="loggedin" (click)="logout()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+          <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+        </svg>
+      </li>
+      <li class="nav-item"   *ngIf="!loggedin" (click)="login()">
+        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="biIn bi-door-open-fill" viewBox="0 0 16 16">
+          <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15zM11 2h.5a.5.5 0 0 1 .5.5V15h-1zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
+        </svg>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="#" [routerLink]="['/cart']"><i class="fas fa-shopping-cart"></i></a>
       </li>
     </ul>
   </div>
 </nav>
-
-<!-- Optional: Add your content here -->
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
