@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject, from, of, throwError } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+
+//firebase imports
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +14,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ApiService {
 
   private apiUrl = 'https://fakestoreapi.com/products';
-  private apiUrllocal = 'http://localhost:3000';
 
   private showProducts = new BehaviorSubject<string>('all');
   showProductsObs$ = this.showProducts.asObservable();
-  users: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AngularFireAuth, private firestore: AngularFirestore) { }
 
   
   httpOptions = {
@@ -23,35 +26,34 @@ export class ApiService {
   };
 
 
+  // Method used in the sub-nav to help with switching categories
   showAllProducts() {
-    console.log('showAllProducts');
     this.showProducts.next('all');
   }
 
   showElectronics() {
-    console.log('showElectronics');
     this.showProducts.next('electronics');
   }
 
   showMenClothes() {
-    console.log('showMen');
     this.showProducts.next('men');
   }
 
   showWomenClothes() {
-    console.log('showAllWomen');
     this.showProducts.next('women');
   }
 
   showJewelery() {
-    console.log('showAllWomen');
     this.showProducts.next('jewelery');
   }
 
   getCurrentShowCurrentState(): string {
     return this.showProducts.value;
   }
+  //-----------------------------------------------------------
 
+
+  //Display component uses these get methods to get different categories and display them
   getAllWomenClothing(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/category/women's clothing`);
   }
@@ -71,6 +73,7 @@ export class ApiService {
   getAllProducts(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}`);
   }
+  //------------------------------------------------------------------------
 
   //Slindelo
   //a method to fetch the item details from the fake API.
@@ -79,80 +82,37 @@ export class ApiService {
     return this.http.get(url);
   }
 
+  /////FIRE BASE login and register  FUUNCTIONS
 
-  register(user: any): Observable<any> {
-    const url = `${this.apiUrllocal}/users/register`;
-    return this.http.post(url, user, this.httpOptions);
+  register(userInfor: any): Observable<any> {
+    return from(this.auth.createUserWithEmailAndPassword(userInfor.email, userInfor.password)
+    .then((userCredential) => {
+            const user = userCredential.user;
+
+            if (user) {
+              return this.firestore.collection('users').doc(user.uid).set({
+                firstName: userInfor.name.firstname,
+                lastName: userInfor.name.lastname,
+                username: userInfor.username,
+                email: userInfor.email,
+                cart: userInfor.cart
+              });
+            }
+            else{
+              throw new Error('User registration failed');
+            }
+        }).
+        catch(error => {
+          console.error('Error during registration:', error);
+          return throwError(error);
+        })
+      );
   }
 
   login(credentials: { email: string, password: string }): Observable<any> {
-    const url = `${this.apiUrllocal}/login`;
-    return this.http.post(url, credentials, this.httpOptions);
-  }
-
-  addToCart(product: any, userEmail: string): Observable<any> {
-    
-    this.getUserByEmail(userEmail).subscribe(data => {
-        this.users = data;
-    })
-    console.log(this.users);
-
-    // If the user is found, add the product to their cart
-    if (this.users.length > 0) {
-      this.users[0].cart.push(product);
-
-      // Update the user's cart in the JSON-Server
-      return this.updateUserCart(this.users[0]).pipe(
-        tap(() => console.log('Product added to cart successfully')),
-        catchError(this.handleError<any>('updateUserCart'))
-      );
-    }
-
-    // If the user is not found, handle accordingly (return an observable with an error)
-    return of({ error: 'User not found' });
-  }
-
-  getUserByEmail(email: string): Observable<any> {
-    return  this.http.get<any[]>(`${this.apiUrllocal}/users?email=${email}`);
-  }
-
-  updateUserCart(user: any): Observable<any> {
-    // Update the user's cart in the JSON-Server
-    return this.http.put(`${this.apiUrllocal}/users/${user.id}`, user, this.httpOptions);
+    return from(this.auth.signInWithEmailAndPassword(credentials.email,credentials.password));
   }
 
 
-  getUserCart(userEmail: string): Observable<any> {
-    return this.getUserByEmail(userEmail).pipe(
-      tap(user => console.log('User cart fetched successfully', user)),
-      catchError(this.handleError<any>('getUserCart'))
-    );
-  }
 
-  deleteItemFromCart(productId: number, userEmail: string): Observable<any> {
-    return this.getUserByEmail(userEmail).pipe(
-      tap(users => {
-        if (users && users.length > 0) {
-          const updatedCart = users[0].cart.filter((item: { id: number; }) => item.id !== productId);
-          users[0].cart = updatedCart;
-
-          // Update the user's cart in the JSON-Server
-          this.updateUserCart(users[0]).subscribe(
-            () => console.log('Item removed from cart successfully'),
-            error => console.error('Failed to remove item from cart:', error)
-          );
-        } else {
-          console.error('User not found');
-        }
-      }),
-      catchError(this.handleError<any>('deleteItemFromCart'))
-    );
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
 }
