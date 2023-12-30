@@ -75,12 +75,12 @@ export class ApiService {
   }
   //------------------------------------------------------------------------
 
-  //Slindelo
   //a method to fetch the item details from the fake API.
   getItemDetails(itemId: number): Observable<any> {
     const url = `${this.apiUrl}/${itemId}`;
     return this.http.get(url);
   }
+  
 
   /////FIRE BASE login and register  FUUNCTIONS
 
