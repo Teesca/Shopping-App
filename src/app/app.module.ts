@@ -50,7 +50,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component'
     NavbarComponent,
     FooterComponent,
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyDwc5VdDjdwedqedSkh8td8R3KHY8jkf1CgdyUls",
+      apiKey: "AIzaSyDwc5VdDjdwed3KHY8jkf1CgdyUls",
       authDomain: "the-can-do.firebaseapp.com",
       projectId: "the-can-do",
       storageBucket: "the-can-do.appspot.com",
