@@ -80,3 +80,22 @@
       #logout:hover{
         background-color: rgb(207, 102, 102);
       }
+
+      #cart{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+      }
+
+      #cart-count{
+          position: absolute;
+          background-color: gray;
+          color: white;
+          font-size: small;
+          font-weight: bold;
+          border-radius: 1em;
+          padding-left: 3px;
+          padding-right: 3px;
+          margin-left: 2.5em;
+          margin-bottom: 40px;
+      }
